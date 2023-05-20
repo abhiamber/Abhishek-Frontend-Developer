@@ -1,4 +1,4 @@
-import { GETDATA, EVENT_ERROR, EVENT_LOADING, EVENT_SUCCESS } from "./Type";
+import { GETDATA, EVENT_ERROR, EVENT_LOADING } from "./Type";
 
 const initialState = {
   data: [],
@@ -27,13 +27,7 @@ export const capSulesReducer = (state = initialState, { type, payload }) => {
         error: payload || true,
       };
     }
-    case EVENT_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        events: payload,
-      };
-    }
+
     default: {
       return state;
     }

@@ -20,7 +20,6 @@ app.post("/signup", async (req, res) => {
       name,
       email,
       password: hash,
-      
     });
 
     await newUser.save();
@@ -37,6 +36,7 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   const user = await UserModel.findOne({ email });
+  console.log(user, password);
   let checkPassword = await argon2.verify(user.password, password);
 
   try {
@@ -44,7 +44,7 @@ app.post("/login", async (req, res) => {
       return res.send({ message: "Invalid Crediantialas" });
     }
     const token = jwt.sign(
-      { id: user._id, name: user.name, email: user.email, },
+      { id: user._id, name: user.name, email: user.email },
       process.env.TOKEN_KEY,
       { expiresIn: "30 days" }
     );
@@ -56,30 +56,6 @@ app.post("/login", async (req, res) => {
   } catch (e) {
     return res.send({ messg: e.message, status: "NO" });
   }
-});
-
-// ***************************search user   needs to protect this route will work later***************
-
-app.get("/", async (req, res) => {
-  const keyword = req.query.search;
-  // console.log(keyword);
-  // ? {
-  //     $or: [
-  //       { name: { $regex: req.query.search, $options: "i" } },
-  //       { email: { $regex: req.query.search, $options: "i" } },
-  //     ],
-  //   }
-  // : {};
-
-  const users = await UserModel.find({
-    $or: [
-      { name: { $regex: req.query.search, $options: "i" } },
-      { email: { $regex: req.query.search, $options: "i" } },
-    ],
-  });
-
-  // console.log(users);
-  return res.send(users);
 });
 
 module.exports = app;

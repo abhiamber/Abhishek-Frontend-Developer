@@ -1,9 +1,29 @@
-import React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { serachCapsules } from "../redux/Action";
 
 const Navbar = () => {
+  let [search, setSearch] = useState();
+  let navigate = useNavigate();
+
+  let disatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
+
+  const handleSearch = () => {
+    if (!search) {
+      return;
+    }
+    disatch(serachCapsules(search));
+    // setSearch("")
+  };
+
   return (
     <Flex
       justifyContent={"space-between"}
@@ -20,10 +40,21 @@ const Navbar = () => {
         fontWeight="700"
         color="black"
       >
-        <Link to={"/"} _hover={"tomato"}>
+        <Link to={"/landing"} _hover={"tomato"}>
           {" "}
           Brainstorm{" "}
         </Link>
+      </Box>
+      <Box display={"flex"}>
+        <Input
+          placeholder="Search by Original Launch"
+          color={"white"}
+          onChange={(e) => setSearch(e.target.value)}
+          fontSize={"20px"}
+        />
+        <Button ml="3px" onClick={handleSearch}>
+          Search
+        </Button>
       </Box>
 
       <Box
@@ -34,7 +65,7 @@ const Navbar = () => {
         fontWeight="bold"
         color="white"
       >
-        <Link to="/">
+        <Link to="/landing">
           {" "}
           <Text>Home</Text>
         </Link>
@@ -44,8 +75,10 @@ const Navbar = () => {
           <Text>About</Text>
         </Link>
 
-        <Link>
-          <Text color="red">Logout</Text>
+        <Link to="/">
+          <Text onClick={handleLogout} color="red">
+            Logout
+          </Text>
         </Link>
       </Box>
     </Flex>
