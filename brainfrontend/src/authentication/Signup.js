@@ -6,6 +6,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
+import { API } from "../API";
 // import { useNavigate } from "react-router";
 
 const Signup = () => {
@@ -47,7 +48,7 @@ const Signup = () => {
       },
     };
     const { data } = await axios.post(
-      "https://chat-app-0c6p.onrender.com/user/signup",
+      `${API}/user/signup`,
       {
         name,
         email,

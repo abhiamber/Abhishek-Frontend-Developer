@@ -20,10 +20,10 @@ app.use("/user", UserRoutes);
 // app.use(validator);
 app.get("/capsules", async (req, res) => {
   try {
-    let response = await fetch("https://api.spacexdata.com/v3/capsules");
+    let response = await fetch("https://api.spacexdata.com/v4/capsules");
     let data = await response.json();
     res.send({ messg: data, status: "Ok" });
-    console.log(data);
+    // console.log(data);
   } catch (e) {
     console.log(e);
   }

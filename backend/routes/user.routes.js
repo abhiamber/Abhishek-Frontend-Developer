@@ -20,8 +20,7 @@ app.post("/signup", async (req, res) => {
       name,
       email,
       password: hash,
-      pic,
-      isAdmin,
+      
     });
 
     await newUser.save();
@@ -45,7 +44,7 @@ app.post("/login", async (req, res) => {
       return res.send({ message: "Invalid Crediantialas" });
     }
     const token = jwt.sign(
-      { id: user._id, name: user.name, email: user.email, pic: user.pic },
+      { id: user._id, name: user.name, email: user.email, },
       process.env.TOKEN_KEY,
       { expiresIn: "30 days" }
     );
@@ -55,7 +54,7 @@ app.post("/login", async (req, res) => {
       .status(200)
       .send({ meassage: "login succees", token, status: "OK" });
   } catch (e) {
-    return res.send({messg:e.message,status:"NO"});
+    return res.send({ messg: e.message, status: "NO" });
   }
 });
 

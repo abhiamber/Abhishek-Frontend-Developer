@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, Button, Portal, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Portal, Text } from "@chakra-ui/react";
 import {
   Popover,
   PopoverTrigger,
@@ -10,35 +10,42 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react";
+import { getCapsules } from "../redux/Action";
+import { useDispatch, useSelector } from "react-redux";
 
 const Capsules = () => {
-  let [data, setData] = useState([]);
-  let [popUpElem, setPopUpElem] = useState();
-  let [toggle, setToggle] = useState(true);
-  const getData = async () => {
-    let { data } = await axios.get(
-      `https://api.spacexdata.com/v4/capsules?limit=${10}&offset=${10}`
-    );
+  let dispatch = useDispatch();
 
-    try {
-      console.log(data);
-      setData(data);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
+  let { capsules } = useSelector((store) => store);
+  console.log(capsules);
 
   useEffect(() => {
-    getData();
+    // getData();
+    dispatch(getCapsules());
   }, []);
 
-  if (data.length === 0) {
+  if (capsules.loading) {
     return <h1>Loading............</h1>;
   }
   return (
-    <Box>
+    <Box
+      bgImage={
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Il8PwhQwYxuw6rhPyW3BUWeXdUGc1yCHQg&usqp=CAU"
+      }
+      backgroundRepeat="no-repeat"
+      backgroundSize=" cover"
+    >
       <Box>
-        <Text>Rigid data</Text>
+        <Heading
+          size="md"
+          fontSize={"25px"}
+          fontWeight={400}
+          p="15px"
+          color={"white"}
+        >
+          {" "}
+          Capsules Rigid data
+        </Heading>
         <Box
           display={"grid"}
           gridTemplateColumns={[
@@ -49,50 +56,46 @@ const Capsules = () => {
           gap="20px"
           p="20px"
         >
-          {data.map((elem) => {
-            return (
-              <Box
-                key={elem.id}
-                boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;x"}
-                cursor={"pointer"}
-                bg="white"
-                p="15px"
-                onClick={
-                  toggle
-                    ? () => {
-                        setPopUpElem(elem.id);
-                        setToggle(!toggle);
-                      }
-                    : null
-                }
-              >
-                <Text> Status {elem.status} </Text>
-                <Text> serial {elem.serial} </Text>{" "}
-                <Text> Type {elem.type} </Text>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button border={"0px"}>View More</Button>
-                  </PopoverTrigger>
-                  <Portal>
-                    <PopoverContent bg="tomato" fontSize={"20px"}>
-                      <PopoverArrow />
-                      <PopoverHeader>Details of Capsules</PopoverHeader>
-                      <PopoverCloseButton />
-                      <PopoverBody>
-                        <Text> Status {elem.status} </Text>
-                        <Text> serial {elem.serial} </Text>{" "}
-                        <Text> Type {elem.type} </Text>
-                        <Text> Land Landings {elem.land_landings} </Text>
-                        <Text> Water Landings {elem.water_landings} </Text>{" "}
-                        <Text> Last Update {elem.last_update} </Text>
-                        <Text> Reuse count {elem.reuse_count} </Text>{" "}
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Portal>
-                </Popover>
-              </Box>
-            );
-          })}
+          {capsules &&
+            capsules.data.map((elem) => {
+              return (
+                <Box
+                  key={elem.id}
+                  boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;x"}
+                  cursor={"pointer"}
+                  bg="white"
+                  p="15px"
+                >
+                  <Text> Status {elem.status} </Text>
+                  <Text> serial {elem.serial} </Text>{" "}
+                  <Text> Type {elem.type} </Text>
+                  <Popover>
+                    <PopoverTrigger>
+                      <Button border={"0px"}>View More</Button>
+                    </PopoverTrigger>
+                    <Portal>
+                      <PopoverContent bg="tomato" fontSize={"20px"}>
+                        <PopoverArrow />
+                        <PopoverHeader>Details of Capsules</PopoverHeader>
+                        <PopoverCloseButton />
+                        <PopoverBody>
+                          <Text> Status {elem.status} </Text>
+                          <Text> serial {elem.serial} </Text>{" "}
+                          <Text> Type {elem.type} </Text>
+                          <Text> Land Landings {elem.land_landings} </Text>
+                          <Text>
+                            {" "}
+                            Water Landings {elem.water_landings}{" "}
+                          </Text>{" "}
+                          <Text> Last Update {elem.last_update} </Text>
+                          <Text> Reuse count {elem.reuse_count} </Text>{" "}
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Portal>
+                  </Popover>
+                </Box>
+              );
+            })}
         </Box>
       </Box>
     </Box>

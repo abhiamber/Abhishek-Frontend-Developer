@@ -19,7 +19,6 @@ const Navbar = () => {
         fontSize="25px"
         fontWeight="700"
         color="black"
-        _hover={"tomato"}
       >
         <Link to={"/"} _hover={"tomato"}>
           {" "}
@@ -37,12 +36,12 @@ const Navbar = () => {
       >
         <Link to="/">
           {" "}
-          <Text _hover={"tomato"}>Home</Text>
+          <Text>Home</Text>
         </Link>
 
         <Link to={"/about"}>
           {" "}
-          <Text _hover="tomato">About</Text>
+          <Text>About</Text>
         </Link>
 
         <Link>
