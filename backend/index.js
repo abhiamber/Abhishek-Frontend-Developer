@@ -1,32 +1,35 @@
 require("dotenv").config();
-// const connect = require("./config/db");
+const connect = require("./config/db");
 const express = require("express");
-const PORT = process.env.PORT || 5000;
-// const chats = require("./data/data");
+const PORT = process.env.PORT || 8080;
 const cors = require("cors");
-// DB_URL=mongodb+srv://abhiamber:abhiamber@cluster0.5y3p60r.mongodb.net/?retryWrites=true&w=majority
-
-// TOKEN_KEY=secretpassword
-
 const app = express();
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 app.use(cors());
 app.use(express.json());
 
-
-// const UserRoutes = require("./routes/user.routes");
-// const ChatRoutes = require("./routes/chat.route");
-// const MessageRouter = require("./routes/message.route");
+const UserRoutes = require("./routes/user.routes");
+const validator = require("./Middleware/validator");
 
 app.get("/", (req, res) => {
   return res.send("working fine................");
 });
 
-// app.use("/user", UserRoutes);
-// app.use("/chat", ChatRoutes);
-// app.use("/message", MessageRouter);
-
+app.use("/user", UserRoutes);
+// app.use(validator);
+app.get("/capsules", async (req, res) => {
+  try {
+    let response = await fetch("https://api.spacexdata.com/v3/capsules");
+    let data = await response.json();
+    res.send({ messg: data, status: "Ok" });
+    console.log(data);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 app.listen(PORT, async (req, res) => {
-//   await connect();
+  await connect();
   console.log("working");
 });
