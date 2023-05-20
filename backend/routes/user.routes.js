@@ -36,16 +36,9 @@ app.post("/signup", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  // const hash = await argon2.hash(password);
-  // console.log(hash, "ABHI");
 
   const user = await UserModel.findOne({ email });
   let checkPassword = await argon2.verify(user.password, password);
-  // console.log(checkPassword);
-
-  // if (!user || hash === user.password) {
-  //       return res.status(401).send({ message: "Invalid Crediantialas" });
-  // }
 
   try {
     if (!checkPassword) {
@@ -57,17 +50,12 @@ app.post("/login", async (req, res) => {
       { expiresIn: "30 days" }
     );
 
-    const refreshToken = jwt.sign(
-      { id: user._id, name: user.name, email: user.email, pic: user.pic },
-      process.env.TOKEN_KEY,
-      { expiresIn: "28 days" }
-    );
     // console.log(token);
     return res
       .status(200)
-      .send({ meassage: "login succees", token, refreshToken });
+      .send({ meassage: "login succees", token, status: "OK" });
   } catch (e) {
-    return res.send(e.message);
+    return res.send({messg:e.message,status:"NO"});
   }
 });
 

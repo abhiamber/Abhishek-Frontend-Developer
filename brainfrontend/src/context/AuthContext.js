@@ -1,0 +1,57 @@
+import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
+const AuthContext = createContext();
+
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState();
+  const navigate = useNavigate();
+  let [dcoded, setDecoded] = useState({});
+
+  const getToken = async () => {
+    // console.log(user);
+
+    try {
+      const token = user.token;
+      const decode = jwt_decode(token);
+      // console.log(decode);
+      setDecoded(decode);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    const userDetail = JSON.parse(localStorage.getItem("userInfo"));
+    setUser(userDetail);
+
+    if (!userDetail) navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
+
+  useEffect(() => {
+    if (user) {
+      getToken();
+    }
+  }, [user]);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        dcoded,
+        setDecoded,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const AuthContextProvider = () => {
+  return useContext(AuthContext);
+};
+
+export default AuthProvider;
