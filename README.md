@@ -25,7 +25,7 @@ This is a simple project. You can open this project using the above deployed lin
 ![image](https://github.com/abhiamber/Abhishek-Frontend-Developer/assets/102507444/e0d37a28-8f3f-4be0-88fd-c91150fb06eb)
 
 2. This is the Home page
-![image](https://github.com/abhiamber/unvoidtech/assets/102507444/5279cf0f-1d3e-4a2a-8798-bd1b5ac547f0)
+![image](https://github.com/abhiamber/Abhishek-Frontend-Developer/assets/102507444/10381f41-b74e-4993-bcf1-f6b58f680904)
 
 
 
