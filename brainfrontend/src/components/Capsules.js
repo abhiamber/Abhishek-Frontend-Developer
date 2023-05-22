@@ -9,6 +9,7 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { getCapsules, statusCapsules, typesCapsules } from "../redux/Action";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -41,7 +42,15 @@ const Capsules = () => {
   }, [page]);
 
   if (capsules.loading) {
-    return <h1>Loading............</h1>;
+    return (
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    );
   }
   return (
     <Box
