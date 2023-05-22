@@ -45,11 +45,13 @@ const Capsules = () => {
   }
   return (
     <Box
-      bgImage={
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Il8PwhQwYxuw6rhPyW3BUWeXdUGc1yCHQg&usqp=CAU"
-      }
-      backgroundRepeat="no-repeat"
-      backgroundSize=" cover"
+      // bgImage={
+      //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Il8PwhQwYxuw6rhPyW3BUWeXdUGc1yCHQg&usqp=CAU"
+      // }
+      // backgroundRepeat="no-repeat"
+      // backgroundSize=" cover"
+      mt="-10px"
+      bg="black"
     >
       <Box>
         <Heading
@@ -120,7 +122,8 @@ const Capsules = () => {
                   boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;x"}
                   cursor={"pointer"}
                   p="15px"
-                  bg="linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(238,194,100,1) 100%)"
+                  // bg="linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(238,194,100,1) 100%)"
+                  bg="white"
                 >
                   <Text> Status - {elem.status} </Text>
                   <Text> Serial - {elem.capsule_serial} </Text>{" "}
