@@ -21,8 +21,8 @@ This is a simple project. You can open this project using the above deployed lin
 
 <h1>Snapshots of our project</h1>
 
-1. This is the Landing page
-![image](https://github.com/abhiamber/unvoidtech/assets/102507444/bd575a08-3f84-43ab-85f4-e5192584bb96)
+1. This is the Singup page
+![image](https://github.com/abhiamber/Abhishek-Frontend-Developer/assets/102507444/e0d37a28-8f3f-4be0-88fd-c91150fb06eb)
 
 2. This is the Home page
 ![image](https://github.com/abhiamber/unvoidtech/assets/102507444/5279cf0f-1d3e-4a2a-8798-bd1b5ac547f0)
