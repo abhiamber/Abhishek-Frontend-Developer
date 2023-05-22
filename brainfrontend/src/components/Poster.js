@@ -21,7 +21,7 @@ export default function Poster() {
       <Box m="auto">
         <Image
           w="100%"
-          h={["205px", "305px", "405px"]}
+          // h={["205px", "305px", "405px"]}
           src="https://cloudfront-us-east-2.images.arcpublishing.com/reuters/TXDGVXPBEVMY5PA2RHRF2EA25Y.jpg"
           m="auto"
         />
@@ -29,7 +29,7 @@ export default function Poster() {
       <Box>
         <Image
           w="100%"
-          h={["205px", "305px", "405px"]}
+          // h={["205px", "305px", "405px"]}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHBm50o6V9NcQC8OVhb6uiNEJEqjJiDbGKQw&usqp=CAU"
           m="auto"
         />
@@ -37,7 +37,7 @@ export default function Poster() {
       <Box>
         <Image
           w="100%"
-          h={["205px", "305px", "405px"]}
+          // h={["205px", "305px", "405px"]}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcffrhi7nGeEa-rTDRfS6BtUZKLu03QQoboA&usqp=CAU"
           m="auto"
         />
@@ -45,7 +45,7 @@ export default function Poster() {
       <Box>
         <Image
           w="100%"
-          h={["205px", "305px", "405px"]}
+          // h={["205px", "305px", "405px"]}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj7lsE_7gAqzmArb-pX9nC4ow-gQ6rgtRR4A&usqp=CAU"
           m="auto"
         />
@@ -53,7 +53,7 @@ export default function Poster() {
       <Box>
         <Image
           w="100%"
-          h={["205px", "305px", "405px"]}
+          // h={["205px", "305px", "405px"]}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj7lsE_7gAqzmArb-pX9nC4ow-gQ6rgtRR4A&usqp=CAU"
           m="auto"
         />
@@ -61,7 +61,7 @@ export default function Poster() {
       <Box>
         <Image
           w="100%"
-          h={["205px", "305px", "405px"]}
+          // h={["205px", "305px", "405px"]}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjz7EpVeWdporZpfJI9kAGaxZV1gq_nGlryw&usqp=CAU"
           m="auto"
         />
